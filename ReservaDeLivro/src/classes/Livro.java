@@ -16,7 +16,7 @@ public class Livro {
         this.nome = nome;
         this.ano = ano;
         this.descricao = descricao;
-        this.situacao = true; //inicia como liberado
+        this.situacao = false; //false: liberado
     }
 
     public String getNome() {
@@ -43,7 +43,7 @@ public class Livro {
         this.descricao = descricao;
     }
 
-    public boolean isSituacao() {
+    public boolean getSituacao() {
         return situacao;
     }
 

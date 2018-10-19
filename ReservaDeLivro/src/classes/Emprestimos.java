@@ -1,6 +1,6 @@
 package classes;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  *
@@ -12,26 +12,49 @@ public class Emprestimos {
     private Livro livro;
     private Responsavel responsavel;
 
-    private Date dataHoraSaida;
-    private Date dataDevolucao;
+    private Date dataHoraEmprestimo;
     private Date dataHoraDevolucao;
+    private Date dataHoraDevolvido;
     private boolean pendencia;
 
-    public Emprestimos(Cliente cliente, Livro livro, Responsavel responsavel, Date dataHoraSaida, Date dataDevolucao) {
-        this.cliente = cliente;
-        this.livro = livro;
-        this.responsavel = responsavel;
-        this.dataHoraSaida = dataHoraSaida;
-        this.dataDevolucao = dataDevolucao;
-        this.pendencia = false; //inicia como não devolvido;
+    public int Emprestimos(Cliente cliente, Livro livro, Responsavel responsavel) {
+        if (cliente.getSituacao() || livro.getSituacao()) {
+            return 1;
+        } else {
+            GregorianCalendar gc = new GregorianCalendar();
+            Date data = new Date();
+            gc.setTime(data);
+            gc.add(Calendar.DAY_OF_YEAR, 10);
+
+            this.dataHoraEmprestimo = new Date();
+            this.dataHoraDevolucao = gc.getTime();
+            this.cliente = cliente;
+            this.livro = livro;
+            this.responsavel = responsavel;
+            this.pendencia = false; //inicia como não devolvido;
+
+            return 0;   //sem erros
+        }
     }
-    
+
     //--
     //renovar emprestimo
+    public void renovarEmprestimo() {
+        GregorianCalendar gc = new GregorianCalendar();
+        Date data = new Date();
+        gc.setTime(data);
+        gc.add(Calendar.DAY_OF_YEAR, 5);
+        setDataHoraDevolucao(gc.getTime());
+    }
+
     //devolver
+    public void devolverLivro() {
+        Date data = new Date();
+        setDataHoraDevolvido(data);
+    }
+
     //bloquear 
     //--
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -56,20 +79,20 @@ public class Emprestimos {
         this.responsavel = responsavel;
     }
 
-    public Date getDataHoraSaida() {
-        return dataHoraSaida;
+    public boolean getPendencia() {
+        return pendencia;
     }
 
-    public void setDataHoraSaida(Date dataHoraSaida) {
-        this.dataHoraSaida = dataHoraSaida;
+    public void setPendencia(boolean pendencia) {
+        this.pendencia = pendencia;
     }
 
-    public Date getDataDevolucao() {
-        return dataDevolucao;
+    public Date getDataHoraEmprestimo() {
+        return dataHoraEmprestimo;
     }
 
-    public void setDataDevolucao(Date dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setDataHoraEmprestimo(Date dataHoraEmprestimo) {
+        this.dataHoraEmprestimo = dataHoraEmprestimo;
     }
 
     public Date getDataHoraDevolucao() {
@@ -80,12 +103,12 @@ public class Emprestimos {
         this.dataHoraDevolucao = dataHoraDevolucao;
     }
 
-    public boolean isPendencia() {
-        return pendencia;
+    public Date getDataHoraDevolvido() {
+        return dataHoraDevolvido;
     }
 
-    public void setPendencia(boolean pendencia) {
-        this.pendencia = pendencia;
+    public void setDataHoraDevolvido(Date dataHoraDevolvido) {
+        this.dataHoraDevolvido = dataHoraDevolvido;
     }
-    
+
 }

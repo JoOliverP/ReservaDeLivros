@@ -8,12 +8,14 @@ public class Cliente extends Pessoa{
     private String cpf;
     private String senha;
     private boolean situacao;
-
+    private boolean bloqueio;
+ 
     public Cliente(String cpf, String nome, String sobrenome, String telefone, String senha, String email) {
         super(email,nome,sobrenome,telefone);
         this.cpf = cpf;
         this.senha = senha;
-        this.situacao = true;   //inicia como liberado
+        this.situacao = false;   //liberado
+        this.bloqueio = false;   //não bloqueado
     }
 
     public String getCpf() {
@@ -32,17 +34,20 @@ public class Cliente extends Pessoa{
         this.senha = senha;
     }
 
-    public boolean isSituacao() {
+    public boolean getSituacao() {
         return situacao;
     }
 
     public void setSituacao(boolean situacao) {
         this.situacao = situacao;
     }
- /*   
-    @Override
-    public String toString(){
-        return null;
+     public boolean getBloqueio() {
+        return bloqueio;
     }
-*/
+
+    public void setBloqueio(boolean bloqueio) {
+        this.bloqueio = bloqueio;
+    }
+
+    
 }
