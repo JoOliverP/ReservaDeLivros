@@ -51,6 +51,9 @@ public class Emprestimos {
     public void devolverLivro() {
         Date data = new Date();
         setDataHoraDevolvido(data);
+        setPendencia(true); //marcando como devolvido
+        livro.setSituacao(true);
+        cliente.setSituacao(true);
     }
 
     //bloquear 
