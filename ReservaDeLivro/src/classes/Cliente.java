@@ -5,13 +5,15 @@ package classes;
  * @author gabriel
  */
 public class Cliente extends Pessoa{
+    private String matricula;
     private String cpf;
     private String senha;
     private boolean situacao;
     private boolean bloqueio;
  
-    public Cliente(String cpf, String nome, String sobrenome, String telefone, String senha, String email) {
+    public Cliente(String matricula, String cpf, String nome, String sobrenome, String telefone, String senha, String email) {
         super(email,nome,sobrenome,telefone);
+        this.matricula = matricula;
         this.cpf = cpf;
         this.senha = senha;
         this.situacao = false;   //liberado
@@ -49,5 +51,14 @@ public class Cliente extends Pessoa{
         this.bloqueio = bloqueio;
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+    
+    
     
 }

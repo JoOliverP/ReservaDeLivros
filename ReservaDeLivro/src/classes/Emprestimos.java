@@ -17,46 +17,84 @@ public class Emprestimos {
     private Date dataHoraDevolvido;
     private boolean pendencia;
 
-    public int Emprestimos(Cliente cliente, Livro livro, Responsavel responsavel) {
-        if (cliente.getSituacao() || livro.getSituacao()) {
-            return 1;
+    public int Emprestimos(Cliente cliente, Livro livro, Responsavel responsavel, String senha, String matricula) {
+        if ((matricula.equals(cliente.getMatricula())) && (senha.equals(cliente.getSenha()))) {
+            if (cliente.getSituacao() || livro.getSituacao()) {
+                return 1;
+            } else {
+                GregorianCalendar gc = new GregorianCalendar();
+                Date data = new Date();
+                gc.setTime(data);
+                gc.add(Calendar.DAY_OF_YEAR, 10);
+
+                this.dataHoraEmprestimo = new Date();
+                this.dataHoraDevolucao = gc.getTime();
+                this.cliente = cliente;
+                this.cliente.setSituacao(true);
+                this.livro = livro;
+                this.livro.setSituacao(true);
+                this.responsavel = responsavel;
+                this.pendencia = true; //inicia como não devolvido;
+
+                return 0;   //sem erros
+            }
         } else {
-            GregorianCalendar gc = new GregorianCalendar();
-            Date data = new Date();
-            gc.setTime(data);
-            gc.add(Calendar.DAY_OF_YEAR, 10);
-
-            this.dataHoraEmprestimo = new Date();
-            this.dataHoraDevolucao = gc.getTime();
-            this.cliente = cliente;
-            this.livro = livro;
-            this.responsavel = responsavel;
-            this.pendencia = false; //inicia como não devolvido;
-
-            return 0;   //sem erros
+            return 1;
         }
     }
 
     //--
     //renovar emprestimo
-    public void renovarEmprestimo() {
+    public String renovarEmprestimo(String mat, String sen) {
         GregorianCalendar gc = new GregorianCalendar();
-        Date data = new Date();
-        gc.setTime(data);
-        gc.add(Calendar.DAY_OF_YEAR, 5);
-        setDataHoraDevolucao(gc.getTime());
+        if ((mat.equals(cliente.getMatricula())) && (sen.equals(cliente.getSenha()))) {
+            if (!cliente.getBloqueio() && getPendencia()) {
+                gc.setTime(getDataHoraDevolucao());
+                gc.add(Calendar.DAY_OF_YEAR, 5);
+                setDataHoraDevolucao(gc.getTime()); //acrescenta cinco dias para data de devolução
+                return "Emprestimo renovado.";
+            } else {
+                return "Usuário bloqueado ou pendente!";
+            }
+        } else {
+            return "Matrícula ou senha não está correta.";
+        }
     }
 
     //devolver
-    public void devolverLivro() {
+    public String devolverLivro() {
+        GregorianCalendar gcDevolvido = new GregorianCalendar();
+        GregorianCalendar gcDevolucao = new GregorianCalendar();
         Date data = new Date();
+        int dia1, dia2;
+
         setDataHoraDevolvido(data);
-        setPendencia(true); //marcando como devolvido
-        livro.setSituacao(true);
-        cliente.setSituacao(true);
+        setPendencia(false); //marcando como devolvido
+        livro.setSituacao(false);
+        cliente.setSituacao(false);
+
+        gcDevolvido.setTime(getDataHoraDevolvido());
+        gcDevolucao.setTime(getDataHoraDevolucao());
+
+        dia1 = gcDevolvido.get(Calendar.DAY_OF_MONTH);
+        dia2 = gcDevolucao.get(Calendar.DAY_OF_MONTH);
+
+        if ((dia1 - dia2) > 5) {
+            bloquear();
+            return "Dias limite estourado! Usuário deve ser bloqueado.";
+        }
+        
+        return "Feito!";
     }
 
-    //bloquear 
+    public void bloquear() {
+        cliente.setBloqueio(true);
+    }
+
+    public void desbloquear() {
+        cliente.setBloqueio(false);
+    }
+
     //--
     public Cliente getCliente() {
         return cliente;
