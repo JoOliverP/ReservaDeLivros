@@ -10,7 +10,6 @@ public class Livro {
     private int ano;
     private String descricao;
     private boolean situacao;
-    private Categoria categoria;
 
     public Livro(String nome, int ano, String descricao) {
         this.nome = nome;
@@ -49,14 +48,6 @@ public class Livro {
 
     public void setSituacao(boolean situacao) {
         this.situacao = situacao;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
     }
 
     /*   
