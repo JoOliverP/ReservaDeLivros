@@ -7,12 +7,10 @@ package classes;
 public abstract class Pessoa {
 
     private String nome;
-    private String sobrenome;
     private String telefone, email;
 
-    public Pessoa(String nome, String sobrenome, String telefone, String email) {
+    public Pessoa(String nome, String telefone, String email) {
         this.nome = nome;
-        this.sobrenome = sobrenome;
         this.telefone = telefone;
         this.email = email;
     }
@@ -23,14 +21,6 @@ public abstract class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
     }
 
     public String getTelefone() {

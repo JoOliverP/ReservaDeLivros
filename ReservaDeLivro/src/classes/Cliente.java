@@ -11,8 +11,8 @@ public class Cliente extends Pessoa{
     private boolean situacao;
     private boolean bloqueio;
  
-    public Cliente(String matricula, String cpf, String nome, String sobrenome, String telefone, String senha, String email) {
-        super(email,nome,sobrenome,telefone);
+    public Cliente(String matricula, String cpf, String nome, String telefone, String senha, String email) {
+        super(nome, email,telefone);
         this.matricula = matricula;
         this.cpf = cpf;
         this.senha = senha;
