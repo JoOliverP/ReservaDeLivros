@@ -140,15 +140,12 @@ public class Emprestimo extends javax.swing.JInternalFrame {
         String liv = jTextField2.getText();
         String rep = jTextField3.getText();
         
-        for (Iterator<Cliente> iterator = cliente.iterator(); iterator.hasNext();) {
-            Cliente next = iterator.next();
-            if(next.getMatricula().equals(mat)){
-                next
-            }
-        }
-     
+        Emprestimos emp = new Emprestimos(cliente.get(cliente.indexOf(mat)),
+                livro.get(livro.indexOf(liv)), 
+                responsavel.get(responsavel.indexOf(liv)));
+        String resolucao = emp.FazerEmprestimo(sen, mat);
+        emprestimos.add(emp);    
         
-        //Emprestimos emp = new Emprestimo(cliente.get(), livro.get(), responsavel, sen, mat);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

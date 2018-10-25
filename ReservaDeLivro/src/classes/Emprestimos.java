@@ -17,10 +17,16 @@ public class Emprestimos {
     private Date dataHoraDevolvido;
     private boolean pendencia;
 
-    public int Emprestimos(Cliente cliente, Livro livro, Responsavel responsavel, String senha, String matricula) {
+    public Emprestimos(Cliente cliente, Livro livro, Responsavel responsavel) {
+        this.cliente = cliente;
+        this.livro = livro;
+        this.responsavel = responsavel;
+    }
+
+    public String FazerEmprestimo(String senha, String matricula) {
         if ((matricula.equals(cliente.getMatricula())) && (senha.equals(cliente.getSenha()))) {
             if (cliente.getSituacao() || livro.getSituacao()) {
-                return 1;
+                return "Cliente ou Livro não podem efetuar operação!";
             } else {
                 GregorianCalendar gc = new GregorianCalendar();
                 Date data = new Date();
@@ -36,10 +42,10 @@ public class Emprestimos {
                 this.responsavel = responsavel;
                 this.pendencia = true; //inicia como não devolvido;
 
-                return 0;   //sem erros
+                return "Feito!";   //sem erros
             }
         } else {
-            return 1;
+            return "Matrícula ou senha Incorretos!";
         }
     }
 
@@ -57,7 +63,7 @@ public class Emprestimos {
                 return "Usuário bloqueado ou pendente!";
             }
         } else {
-            return "Matrícula ou senha não está correta.";
+            return "Matrícula ou senha Incorretos!";
         }
     }
 
