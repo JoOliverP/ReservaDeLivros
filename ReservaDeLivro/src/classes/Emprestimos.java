@@ -15,6 +15,7 @@ public class Emprestimos {
     private Date dataHoraEmprestimo;
     private Date dataHoraDevolucao;
     private Date dataHoraDevolvido;
+    private String id;
     private boolean pendencia;
 
     public Emprestimos(Cliente cliente, Livro livro, Responsavel responsavel) {
@@ -41,6 +42,7 @@ public class Emprestimos {
                 this.livro.setSituacao(true);
                 this.responsavel = responsavel;
                 this.pendencia = true; //inicia como não devolvido;
+                this.id = matricula+"1";
 
                 return "Feito!";   //sem erros
             }
@@ -158,4 +160,14 @@ public class Emprestimos {
         this.dataHoraDevolvido = dataHoraDevolvido;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
+    
 }
