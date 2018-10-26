@@ -36,7 +36,7 @@ public class Emprestimo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCadastro = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -51,10 +51,10 @@ public class Emprestimo extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Matricula Cliente");
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastro.setText("Cadastrar");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCadastroActionPerformed(evt);
             }
         });
 
@@ -79,7 +79,7 @@ public class Emprestimo extends javax.swing.JInternalFrame {
                 .addContainerGap(340, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnCadastro)
                 .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
@@ -117,7 +117,7 @@ public class Emprestimo extends javax.swing.JInternalFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnCadastro)
                     .addComponent(jButton2))
                 .addGap(27, 27, 27))
         );
@@ -133,10 +133,10 @@ public class Emprestimo extends javax.swing.JInternalFrame {
         jPasswordField1.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
         // TODO add your handling code here:
         String mat = jTextField1.getText();
-        String sen = jPasswordField1.getPassword().toString();
+        String sen = new String(jPasswordField1.getPassword()).trim();
         String liv = jTextField2.getText();
         String rep = jTextField3.getText();
         
@@ -146,11 +146,11 @@ public class Emprestimo extends javax.swing.JInternalFrame {
         String resolucao = emp.FazerEmprestimo(sen, mat);
         emprestimos.add(emp);    
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCadastroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCadastro;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
