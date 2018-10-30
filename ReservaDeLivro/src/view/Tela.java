@@ -7,7 +7,6 @@ package view;
 
 import classes.*;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +16,7 @@ public class Tela extends javax.swing.JFrame {
 
     ArrayList<Cliente> cliente = new ArrayList<>();
     ArrayList<Livro> livro = new ArrayList<>();
+    ArrayList<Responsavel> responsavel = new ArrayList<>();
     ArrayList<Emprestimos> emprestimos = new ArrayList<>();
 
     /**
@@ -41,9 +41,9 @@ public class Tela extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmp = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblLivros = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -54,13 +54,12 @@ public class Tela extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        btn_devolve = new javax.swing.JMenuItem();
+        btn_block = new javax.swing.JMenuItem();
+        btn_desbloc = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,37 +78,32 @@ public class Tela extends javax.swing.JFrame {
         jLabel1.setText("Reserva de Livros");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/database_refresh.png"))); // NOI18N
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
-        tblEmp.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID Emp.", "Nome Cli.", "Nome Liv.", "Nome Res.", "Situação", "Data Devolução"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblEmp);
-
-        tblLivros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID Liv.", "Nome", "Ano", "Desc.", "Situação"
+                "Nome Cli.", "Nome Liv.", "Nome Res.", "Situação", "Data Devolução"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -120,7 +114,34 @@ public class Tela extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblLivros);
+        jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nome", "Ano", "Desc.", "Situação"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
 
         jLabel2.setText("Livros");
 
@@ -133,7 +154,7 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,7 +169,7 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel3Layout.setVerticalGroup(
@@ -178,7 +199,7 @@ public class Tela extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 888, Short.MAX_VALUE)
+            .addGap(0, 912, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,14 +236,6 @@ public class Tela extends javax.swing.JFrame {
         jMenuItem5.setText("Livro");
         jMenu2.add(jMenuItem5);
 
-        jMenuItem6.setText("Responsavel");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem6);
-
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Emprestimo");
@@ -236,21 +249,36 @@ public class Tela extends javax.swing.JFrame {
         jMenu3.add(jMenuItem7);
 
         jMenuItem8.setText("Renovar");
-        jMenu3.add(jMenuItem8);
-
-        jMenuItem9.setText("Devolver");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem9);
+        jMenu3.add(jMenuItem8);
 
-        jMenuItem10.setText("Bloquear");
-        jMenu3.add(jMenuItem10);
+        btn_devolve.setText("Devolver");
+        btn_devolve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_devolveActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btn_devolve);
 
-        jMenuItem11.setText("Desbloquear");
-        jMenu3.add(jMenuItem11);
+        btn_block.setText("Bloquear");
+        btn_block.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_blockActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btn_block);
+
+        btn_desbloc.setText("Desbloquear");
+        btn_desbloc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_desblocActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btn_desbloc);
 
         jMenuBar1.add(jMenu3);
 
@@ -260,10 +288,7 @@ public class Tela extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,10 +306,6 @@ public class Tela extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         CadLivro cadLivro = new CadLivro(this.livro);
@@ -294,44 +315,38 @@ public class Tela extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        CadEmprestimo cadEmp = new CadEmprestimo(this.emprestimos,this.cliente, this.livro);
-        jPanel2.add(cadEmp);
-        cadEmp.setVisible(true);
+        CadEmprestimo emprestimo = new CadEmprestimo(this.emprestimos, this.cliente, this.livro, this.responsavel);
+        jPanel2.add(emprestimo);
+        emprestimo.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void btn_devolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_devolveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+        Devolver devolver = new Devolver(this.emprestimos);
+        jPanel2.add(devolver);
+        devolver.setVisible(true);
+    }//GEN-LAST:event_btn_devolveActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //Tabelas
-        DefaultTableModel tblL = (DefaultTableModel) tblLivros.getModel();
-        DefaultTableModel tblE = (DefaultTableModel) tblEmp.getModel();
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        Renovar renovar = new Renovar(this.emprestimos);
+        jPanel2.add(renovar);
+        renovar.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
-        while (tblL.getRowCount() > 0) {
-            tblL.setRowCount(0);
-        }
-        while (tblE.getRowCount() > 0) {
-            tblE.setRowCount(0);
-        }
+    private void btn_blockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_blockActionPerformed
+        // TODO add your handling code here:
+        Bloquear bloquear = new Bloquear(this.cliente);
+        jPanel2.add(bloquear);
+        bloquear.setVisible(true);
+    }//GEN-LAST:event_btn_blockActionPerformed
 
-        for (Livro next : livro) {
-            String s = next.getSituacao() == false ? "Disponível" : "Não Disponível";
-            Object[] dados = {next.getId(),next.getNome(), next.getAno(), next.getDescricao(), s};
-            tblL.addRow(dados);
-        }
-
-        for (Emprestimos next : emprestimos) {
-            String s = next.getPendencia() == false ? "Devolvido" : "Pendente";
-            Object[] dados = {next.getId(), next.getCliente().getNome(), next.getLivro().getNome(), next.getResponsavel(), s, next.getDataHoraDevolucao()};
-            tblE.addRow(dados);
-        }
-
-        /*
-        
-        */
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_desblocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desblocActionPerformed
+        // TODO add your handling code here:
+        Desbloquear desbloquear = new Desbloquear(this.cliente);
+        jPanel2.add(desbloquear);
+        desbloquear.setVisible(true);
+    }//GEN-LAST:event_btn_desblocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,6 +384,9 @@ public class Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btn_block;
+    private javax.swing.JMenuItem btn_desbloc;
+    private javax.swing.JMenuItem btn_devolve;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -378,22 +396,18 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable tblEmp;
-    private javax.swing.JTable tblLivros;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

@@ -252,12 +252,13 @@ public class CadUsuario extends javax.swing.JInternalFrame {
        String cpf = jFormattedTextField1.getText();
        String tel = jTextField3.getText();
        String eml = jTextField4.getText();
-       String sen = new String(jPasswordField1.getPassword());
+       String sen = jPasswordField1.getPassword().toString();
        Cliente cl = new Cliente(mat, cpf, nom, tel, sen, eml);
        this.cliente.add(cl);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
 
