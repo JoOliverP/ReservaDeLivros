@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author gabriel
@@ -10,7 +12,7 @@ public class Cliente extends Pessoa{
     private String senha;
     private boolean situacao;
     private boolean bloqueio;
-    private Emprestimos emprestimo;
+    private ArrayList<Emprestimos> emprestimo;
  
     public Cliente(String matricula, String cpf, String nome, String telefone, String senha, String email) {
         super(nome, email,telefone);
@@ -60,12 +62,14 @@ public class Cliente extends Pessoa{
         this.matricula = matricula;
     }
 
-    public Emprestimos getEmprestimo() {
+    public ArrayList<Emprestimos> getEmprestimo() {
         return emprestimo;
     }
 
-    public void setEmprestimo(Emprestimos emprestimo) {
+    public void setEmprestimo(ArrayList<Emprestimos> emprestimo) {
         this.emprestimo = emprestimo;
     }
+
+   
        
 }

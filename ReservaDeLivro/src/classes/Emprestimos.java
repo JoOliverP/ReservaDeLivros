@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Emprestimos {
 
     private Cliente cliente;
-    private Livro livro;
+    private ArrayList<Livro> livro;
     private String responsavel;
 
     private Date dataHoraEmprestimo;

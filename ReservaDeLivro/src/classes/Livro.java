@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author gabriel
@@ -11,7 +13,7 @@ public class Livro {
     private String descricao;
     private boolean situacao;
     private String id;
-    private Emprestimos emprestimo;
+    private ArrayList<Emprestimos> emprestimo;
 
     public Livro(String nome, int ano, String descricao, String id) {
         this.nome = nome;
@@ -61,13 +63,12 @@ public class Livro {
         this.id = id;
     }
 
-    public Emprestimos getEmprestimo() {
+    public ArrayList<Emprestimos> getEmprestimo() {
         return emprestimo;
     }
 
-    public void setEmprestimo(Emprestimos emprestimo) {
+    public void setEmprestimo(ArrayList<Emprestimos> emprestimo) {
         this.emprestimo = emprestimo;
     }
 
-    
 }
