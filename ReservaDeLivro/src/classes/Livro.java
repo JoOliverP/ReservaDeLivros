@@ -10,12 +10,15 @@ public class Livro {
     private int ano;
     private String descricao;
     private boolean situacao;
+    private String id;
+    private Emprestimos emprestimo;
 
-    public Livro(String nome, int ano, String descricao) {
+    public Livro(String nome, int ano, String descricao, String id) {
         this.nome = nome;
         this.ano = ano;
         this.descricao = descricao;
         this.situacao = false; //false: liberado
+        this.id = id;
     }
 
     public String getNome() {
@@ -50,10 +53,21 @@ public class Livro {
         this.situacao = situacao;
     }
 
-    /*   
-    @Override
-    public String toString(){
-        return null;
+    public String getId() {
+        return id;
     }
-     */
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Emprestimos getEmprestimo() {
+        return emprestimo;
+    }
+
+    public void setEmprestimo(Emprestimos emprestimo) {
+        this.emprestimo = emprestimo;
+    }
+
+    
 }

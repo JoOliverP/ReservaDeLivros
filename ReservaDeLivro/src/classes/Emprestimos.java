@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,7 +11,7 @@ public class Emprestimos {
 
     private Cliente cliente;
     private Livro livro;
-    private Responsavel responsavel;
+    private String responsavel;
 
     private Date dataHoraEmprestimo;
     private Date dataHoraDevolucao;
@@ -18,17 +19,17 @@ public class Emprestimos {
     private String id;
     private boolean pendencia;
 
-    public Emprestimos(Cliente cliente, Livro livro, Responsavel responsavel) {
-        this.cliente = cliente;
-        this.livro = livro;
-        this.responsavel = responsavel;
+    public Emprestimos(){
+        //construtor padrão
     }
-
-    public String FazerEmprestimo(String senha, String matricula) {
+      
+    public void FazerEmprestimo(String senha, String matricula) {
         if ((matricula.equals(cliente.getMatricula())) && (senha.equals(cliente.getSenha()))) {
             if (cliente.getSituacao() || livro.getSituacao()) {
-                return "Cliente ou Livro não podem efetuar operação!";
-            } else {
+                JOptionPane.showMessageDialog(null, "Cliente ou Livro não podem efetuar operação!");
+            }
+            else {
+                Random n = new Random();
                 GregorianCalendar gc = new GregorianCalendar();
                 Date data = new Date();
                 gc.setTime(data);
@@ -36,18 +37,15 @@ public class Emprestimos {
 
                 this.dataHoraEmprestimo = new Date();
                 this.dataHoraDevolucao = gc.getTime();
-                this.cliente = cliente;
                 this.cliente.setSituacao(true);
-                this.livro = livro;
                 this.livro.setSituacao(true);
-                this.responsavel = responsavel;
                 this.pendencia = true; //inicia como não devolvido;
-                this.id = matricula+"1";
-
-                return "Feito!";   //sem erros
+                this.id = matricula+""+n.nextInt(1024);
+                    
+                JOptionPane.showMessageDialog(null, "Feito!");   //sem erros
             }
         } else {
-            return "Matrícula ou senha Incorretos!";
+            JOptionPane.showMessageDialog(null, "Matrícula ou senha Incorretos!");
         }
     }
 
@@ -120,11 +118,11 @@ public class Emprestimos {
         this.livro = livro;
     }
 
-    public Responsavel getResponsavel() {
+    public String getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(Responsavel responsavel) {
+    public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
     }
 

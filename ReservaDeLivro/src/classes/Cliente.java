@@ -10,6 +10,7 @@ public class Cliente extends Pessoa{
     private String senha;
     private boolean situacao;
     private boolean bloqueio;
+    private Emprestimos emprestimo;
  
     public Cliente(String matricula, String cpf, String nome, String telefone, String senha, String email) {
         super(nome, email,telefone);
@@ -58,7 +59,13 @@ public class Cliente extends Pessoa{
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-    
-    
-    
+
+    public Emprestimos getEmprestimo() {
+        return emprestimo;
+    }
+
+    public void setEmprestimo(Emprestimos emprestimo) {
+        this.emprestimo = emprestimo;
+    }
+       
 }

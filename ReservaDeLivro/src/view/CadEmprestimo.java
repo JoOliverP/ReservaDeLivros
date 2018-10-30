@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 import classes.*;
 
@@ -11,18 +6,18 @@ import classes.*;
  * @author gabriel
  */
 import java.util.ArrayList;
-import java.util.Iterator;
-public class Emprestimo extends javax.swing.JInternalFrame {
+import javax.swing.JOptionPane;
+
+public class CadEmprestimo extends javax.swing.JInternalFrame {
 
     ArrayList<Emprestimos> emprestimos;
     ArrayList<Cliente> cliente;
     ArrayList<Livro> livro;
-    ArrayList<Responsavel> responsavel;
-    public Emprestimo(ArrayList<Emprestimos> emprestimos, ArrayList<Cliente> cliente, ArrayList<Livro> livro, ArrayList<Responsavel> responsavel ) {
+
+    public CadEmprestimo(ArrayList<Emprestimos> emprestimos, ArrayList<Cliente> cliente, ArrayList<Livro> livro) {
         this.emprestimos = emprestimos;
         this.cliente = cliente;
         this.livro = livro;
-        this.responsavel = responsavel;
         initComponents();
     }
 
@@ -65,7 +60,7 @@ public class Emprestimo extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Nome livro");
+        jLabel2.setText("ID livro");
 
         jLabel3.setText("Senha");
 
@@ -76,7 +71,7 @@ public class Emprestimo extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(340, Short.MAX_VALUE)
+                .addContainerGap(262, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCadastro)
@@ -115,7 +110,7 @@ public class Emprestimo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastro)
                     .addComponent(jButton2))
@@ -135,16 +130,45 @@ public class Emprestimo extends javax.swing.JInternalFrame {
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
         // TODO add your handling code here:
-        String mat = jTextField1.getText();
-        String sen = new String(jPasswordField1.getPassword()).trim();
         String liv = jTextField2.getText();
         String rep = jTextField3.getText();
-        
-        Emprestimos emp = new Emprestimos(cliente.get(cliente.indexOf(mat)),
-                livro.get(livro.indexOf(liv)), 
-                responsavel.get(responsavel.indexOf(liv)));
-        String resolucao = emp.FazerEmprestimo(sen, mat);
-        emprestimos.add(emp);    
+        String sen = new String(jPasswordField1.getPassword());
+        String mat = jTextField1.getText();
+        int indexCli = -1, indexLiv = -1;
+
+
+        if (mat.equals("") || rep.equals("") || sen.equals("") || liv.equals("")) {
+            JOptionPane.showMessageDialog(null, "Alguns campos estão em Branco!");
+        } else {
+                   
+            for(int i = 0; i < cliente.size(); i++){
+                if(cliente.get(i).getMatricula().contains(mat)){
+                    indexCli = cliente.indexOf(i);
+                    //System.out.println(cliente.get(i).getMatricula());
+                }
+            }            
+            for(int i = 0; i < livro.size(); i++){
+                if(livro.get(i).getId().contains(liv)){
+                    indexLiv = livro.indexOf(i);
+                    //System.out.println(livro.get(i).getNome());
+                }
+            }
+            
+            System.out.println(indexCli + " "+ indexLiv);
+            
+            /*
+            if(indexCli == -1 || indexLiv == -1){
+                JOptionPane.showMessageDialog(null, "Cliente ou livro não encontrados !");
+            }else{
+                Emprestimos emp = new Emprestimos();
+                emp.setCliente(cliente.get(indexCli));
+                emp.setLivro(livro.get(indexLiv));
+                emp.FazerEmprestimo(sen, mat);
+            }
+           */
+            
+        }
+
         
     }//GEN-LAST:event_btnCadastroActionPerformed
 

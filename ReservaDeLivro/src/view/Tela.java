@@ -7,7 +7,6 @@ package view;
 
 import classes.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +17,6 @@ public class Tela extends javax.swing.JFrame {
 
     ArrayList<Cliente> cliente = new ArrayList<>();
     ArrayList<Livro> livro = new ArrayList<>();
-    ArrayList<Responsavel> responsavel = new ArrayList<>();
     ArrayList<Emprestimos> emprestimos = new ArrayList<>();
 
     /**
@@ -53,7 +51,6 @@ public class Tela extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -112,11 +109,11 @@ public class Tela extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Ano", "Desc.", "Situação"
+                "ID Liv.", "Nome", "Ano", "Desc.", "Situação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -208,14 +205,6 @@ public class Tela extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Responsaveis");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
-
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Editar");
@@ -273,7 +262,7 @@ public class Tela extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -292,13 +281,6 @@ public class Tela extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        CadResponsavel cadResponsavel = new CadResponsavel(this.responsavel);
-        jPanel2.add(cadResponsavel);
-        cadResponsavel.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -312,9 +294,9 @@ public class Tela extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        Emprestimo emprestimo = new Emprestimo(this.emprestimos, this.cliente, this.livro, this.responsavel);
-        jPanel2.add(emprestimo);
-        emprestimo.setVisible(true);
+        CadEmprestimo cadEmp = new CadEmprestimo(this.emprestimos,this.cliente, this.livro);
+        jPanel2.add(cadEmp);
+        cadEmp.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
@@ -325,25 +307,29 @@ public class Tela extends javax.swing.JFrame {
         //Tabelas
         DefaultTableModel tblL = (DefaultTableModel) tblLivros.getModel();
         DefaultTableModel tblE = (DefaultTableModel) tblEmp.getModel();
-        
-        while(tblL.getRowCount() > 0){
+
+        while (tblL.getRowCount() > 0) {
             tblL.setRowCount(0);
         }
-        while(tblE.getRowCount() > 0){
+        while (tblE.getRowCount() > 0) {
             tblE.setRowCount(0);
         }
-        
+
         for (Livro next : livro) {
-            String s = next.getSituacao()==false?"Disponível":"Não Disponível";
-            Object[] dados = {next.getNome(),next.getAno(),next.getDescricao(),s};
+            String s = next.getSituacao() == false ? "Disponível" : "Não Disponível";
+            Object[] dados = {next.getId(),next.getNome(), next.getAno(), next.getDescricao(), s};
             tblL.addRow(dados);
         }
-        
-        for(Emprestimos next : emprestimos){
-            String s = next.getPendencia()==false?"Devolvido":"Pendente";
-            Object[] dados = {next.getId(),next.getCliente().getNome(),next.getLivro().getNome(),next.getResponsavel().getNome(),s,next.getDataHoraDevolucao()};
+
+        for (Emprestimos next : emprestimos) {
+            String s = next.getPendencia() == false ? "Devolvido" : "Pendente";
+            Object[] dados = {next.getId(), next.getCliente().getNome(), next.getLivro().getNome(), next.getResponsavel(), s, next.getDataHoraDevolucao()};
             tblE.addRow(dados);
         }
+
+        /*
+        
+        */
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -395,7 +381,6 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
